@@ -2,7 +2,13 @@ from turtle import Turtle, Screen
 import random
 import time
 
+# Globals
+score = 0
+food_x = 0
+food_y = 0
 
+
+# Item Creations
 def create_snake() -> list:
     """ Creates a snake body from Turtle objects in the center of screen """
     snake_number = 3
@@ -24,14 +30,16 @@ def create_snake() -> list:
 def food():
     # TODO delete food.
     if not is_food:
-        rand_x = random.randint(-280, 280)
-        rand_y = random.randint(-280, 280)
+        global food_x, food_y
+        food_x = random.randrange(-280, 280, 20)
+        food_y = random.randrange(-280, 280, 20)
+        # tup_pos = (rand_x, rand_y)
 
         food = Turtle("circle")
-        food.shapesize(1)
+        food.shapesize(0.5, 0.5)
         food.color("blue")
         food.penup()
-        food.setpos(rand_x, rand_y)
+        food.setpos(food_x, food_y)
 
     return True
 
@@ -64,6 +72,15 @@ def move_snake():
     s_head.forward(20)
 
 
+# Collition Managements
+def check_col_food():
+    # print(s_head.position())
+    # print((food_x, food_y))
+    # print()
+    if s_head.position() == (food_x, food_y):
+        print("Collided")
+
+
 # Screen properties
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -90,6 +107,7 @@ while game_on:
     screen.update()
     move_snake()
     is_food = food()
+    check_col_food()
     time.sleep(0.1)
 
 
