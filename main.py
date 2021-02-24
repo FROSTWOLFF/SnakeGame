@@ -19,6 +19,8 @@ def create_snake() -> list:
     return s_segments
 
 
+def move_snake():
+
 # Screen properties
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -28,6 +30,19 @@ screen.tracer(0)
 
 s_segments = create_snake()
 screen.update()
+
+s_head = s_segments[2]
+s_body = s_segments[1]
+s_tail = s_segments[0]
+
+game_on = True
+while game_on:
+    #Listened Keys
+    
+    s_head.forward(20)
+    move_snake(s_head.position())
+    
+
 
 
 screen.exitonclick()
