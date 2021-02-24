@@ -20,6 +20,7 @@ def create_snake() -> list:
     return s_segments
 
 
+# Moving Functions
 def go_up():
     if s_head.heading() != 270:
         s_head.setheading(90)
