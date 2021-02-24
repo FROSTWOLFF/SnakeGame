@@ -4,10 +4,11 @@ import time
 
 def create_snake() -> list:
     """ Creates a snake body from Turtle objects in the center of screen """
-    x = -40
+    snake_number = 3
+    x = -20 * (snake_number - 1)
     y = 0
     s_segments = []
-    for _ in range(3):
+    for _ in range(snake_number):
         new_segment = Turtle("square")
         new_segment.color("white")
         new_segment.penup()
@@ -39,9 +40,11 @@ def go_right():
         s_head.setheading(0)
 
 
-def turn_snake():
-    for seg_num in range(3):
+def move_snake():
+    """ Moves the snake body from tail to head by taking each others positions """
+    for seg_num in range(len(s_segments) - 1):
         s_segments[seg_num].goto(s_segments[seg_num + 1].position())
+    s_head.forward(20)
 
 
 # Screen properties
@@ -50,10 +53,10 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.tracer(0)
 
+# Creating the first snake segments
 s_segments = create_snake()
-s_head = s_segments[2]
-s_body = s_segments[1]
-s_tail = s_segments[0]
+s_head = s_segments[len(s_segments) - 1]  # Last segment of snake
+
 
 # Screen Listening
 screen.listen()
@@ -63,10 +66,11 @@ screen.onkeypress(go_up, "w")
 screen.onkeypress(go_down, "s")
 
 
+# Main Game
 game_on = True
 while game_on:
     screen.update()
-    s_head.forward(20)
+    move_snake()
     time.sleep(0.1)
 
 
