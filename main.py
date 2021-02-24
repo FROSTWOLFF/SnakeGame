@@ -19,7 +19,25 @@ def create_snake() -> list:
     return s_segments
 
 
-def move_snake():
+def go_up():
+    if s_head.heading() != 270:
+        s_head.setheading(90)
+
+
+def go_down():
+    if s_head.heading() != 90:
+        s_head.setheading(270)
+
+
+def go_left():
+    if s_head.heading() != 0:
+        s_head.setheading(180)
+
+
+def go_right():
+    if s_head.heading() != 180:
+        s_head.setheading(0)
+
 
 # Screen properties
 screen = Screen()
@@ -27,22 +45,24 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.tracer(0)
 
-
 s_segments = create_snake()
-screen.update()
-
 s_head = s_segments[2]
 s_body = s_segments[1]
 s_tail = s_segments[0]
 
+# Screen Listening
+screen.listen()
+screen.onkeypress(go_left, "a")
+screen.onkeypress(go_right, "d")
+screen.onkeypress(go_up, "w")
+screen.onkeypress(go_down, "s")
+
+
 game_on = True
 while game_on:
-    #Listened Keys
-    
+    screen.update()
     s_head.forward(20)
-    move_snake(s_head.position())
-    
+    time.sleep(0.1)
 
 
-
-screen.exitonclick()
+screen.mainloop()
