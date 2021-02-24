@@ -3,6 +3,7 @@ import random
 import time
 
 # Globals
+delete_food = False
 score = 0
 food_x = 0
 food_y = 0
@@ -27,21 +28,20 @@ def create_snake() -> list:
     return s_segments
 
 
-def food():
+def create_food() -> tuple:
     # TODO delete food.
-    if not is_food:
-        global food_x, food_y
-        food_x = random.randrange(-280, 280, 20)
-        food_y = random.randrange(-280, 280, 20)
-        # tup_pos = (rand_x, rand_y)
+    global food_x, food_y
+    food_x = random.randrange(-280, 280, 20)
+    food_y = random.randrange(-280, 280, 20)
+    # tup_pos = (rand_x, rand_y)
 
-        food = Turtle("circle")
-        food.shapesize(0.5, 0.5)
-        food.color("blue")
-        food.penup()
-        food.setpos(food_x, food_y)
+    food = Turtle("circle")
+    food.shapesize(0.5, 0.5)
+    food.color("blue")
+    food.penup()
+    food.setpos(food_x, food_y)
 
-    return True
+    return food
 
 
 def write_score():
@@ -119,11 +119,17 @@ game_on = True
 while game_on:
     screen.update()
 
-    write_score()  # TODO Resolve text duplication
+    write_score()
     move_snake()
-    is_food = food()
 
+    if is_food == False:
+        food = create_food()  # Getting Turtle object and BOOL for is_food
+        is_food = True
+
+    # Checks for collision and hides food, clears score, tells that the food is gone.
     if check_col_food():
+        is_food = False
+        food.hideturtle()
         writer.clear()
 
     time.sleep(0.1)
