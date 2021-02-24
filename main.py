@@ -39,6 +39,11 @@ def go_right():
         s_head.setheading(0)
 
 
+def turn_snake():
+    for seg_num in range(3):
+        s_segments[seg_num].goto(s_segments[seg_num + 1].position())
+
+
 # Screen properties
 screen = Screen()
 screen.setup(width=600, height=600)
