@@ -79,9 +79,9 @@ def move_snake():
 
 # Collition Managements
 def check_col_food():
-    print(s_head.distance(food_x, food_y))
-    if s_head.distance(food_x, food_y) < 20:
-        global score
+    global score
+    # print(s_head.distance(food_x, food_y))
+    if s_head.distance(food_x, food_y) < 10:
         score += 10
         print("Collided")
         return True
@@ -119,12 +119,12 @@ game_on = True
 while game_on:
     screen.update()
 
-    write_score()  # TODO
+    write_score()  # TODO Resolve text duplication
     move_snake()
     is_food = food()
 
     if check_col_food():
-        writer.undo()
+        writer.clear()
 
     time.sleep(0.1)
 
