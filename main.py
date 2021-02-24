@@ -29,8 +29,5 @@ screen.tracer(0)
 s_segments = create_snake()
 screen.update()
 
-print("resetted again")
-print("resetted again")
-print("resetted again")
 
 screen.exitonclick()
