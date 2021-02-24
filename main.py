@@ -29,4 +29,6 @@ screen.tracer(0)
 s_segments = create_snake()
 screen.update()
 
+print("dogus")
+
 screen.exitonclick()
