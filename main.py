@@ -1,4 +1,5 @@
 from turtle import Turtle, Screen
+import random
 import time
 
 
@@ -18,6 +19,21 @@ def create_snake() -> list:
         x += 20
 
     return s_segments
+
+
+def food():
+    # TODO delete food.
+    if not is_food:
+        rand_x = random.randint(-280, 280)
+        rand_y = random.randint(-280, 280)
+
+        food = Turtle("circle")
+        food.shapesize(1)
+        food.color("blue")
+        food.penup()
+        food.setpos(rand_x, rand_y)
+
+    return True
 
 
 # Moving Functions
@@ -68,10 +84,12 @@ screen.onkeypress(go_down, "s")
 
 
 # Main Game
+is_food = False
 game_on = True
 while game_on:
     screen.update()
     move_snake()
+    is_food = food()
     time.sleep(0.1)
 
 
