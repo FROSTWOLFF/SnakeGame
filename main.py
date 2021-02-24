@@ -44,6 +44,11 @@ def food():
     return True
 
 
+def write_score():
+    global score
+    writer.write(f"Score : {score}", font=("Arial", 16, "normal"))
+
+
 # Moving Functions
 def go_up():
     if s_head.heading() != 270:
@@ -74,11 +79,12 @@ def move_snake():
 
 # Collition Managements
 def check_col_food():
-    # print(s_head.position())
-    # print((food_x, food_y))
-    # print()
-    if s_head.position() == (food_x, food_y):
+    print(s_head.distance(food_x, food_y))
+    if s_head.distance(food_x, food_y) < 20:
+        global score
+        score += 10
         print("Collided")
+        return True
 
 
 # Screen properties
@@ -99,15 +105,27 @@ screen.onkeypress(go_right, "d")
 screen.onkeypress(go_up, "w")
 screen.onkeypress(go_down, "s")
 
+# Other turtles
+writer = Turtle()
+writer.color("white")
+writer.penup()
+writer.hideturtle()
+writer.setpos(-40, 270)
+
 
 # Main Game
 is_food = False
 game_on = True
 while game_on:
     screen.update()
+
+    write_score()  # TODO
     move_snake()
     is_food = food()
-    check_col_food()
+
+    if check_col_food():
+        writer.undo()
+
     time.sleep(0.1)
 
 
