@@ -44,6 +44,15 @@ def create_food() -> tuple:
     return food
 
 
+def grow_snake():
+    new_segment = Turtle("square")
+    new_segment.color("white")
+    new_segment.penup()
+    new_segment.setpos(s_segments[0].position())
+
+    s_segments.insert(0, new_segment)
+
+
 def write_score():
     global score
     writer.write(f"Score : {score}", font=("Arial", 16, "normal"))
@@ -126,12 +135,12 @@ while game_on:
         food = create_food()  # Getting Turtle object and BOOL for is_food
         is_food = True
 
-    # Checks for collision and hides object, sets food false, clears score.
+    # Checks for collision and hides object, sets food false, clears score, grows snake.
     if check_col_food():
+        grow_snake()
         is_food = False
         food.hideturtle()
         writer.clear()
-
     time.sleep(0.1)
 
 
