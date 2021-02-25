@@ -96,6 +96,15 @@ def check_col_food():
         return True
 
 
+def check_col_wall():
+    if s_head.xcor() < -300 or s_head.xcor() > 300:
+        print("GameOver")
+        # game_on = False
+
+    if s_head.ycor() < -300 or s_head.ycor() > 300:
+        print("GameOver")
+
+
 # Screen properties
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -141,6 +150,8 @@ while game_on:
         is_food = False
         food.hideturtle()
         writer.clear()
+
+    check_col_wall()
     time.sleep(0.1)
 
 
