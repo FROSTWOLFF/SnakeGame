@@ -126,7 +126,7 @@ while game_on:
         food = create_food()  # Getting Turtle object and BOOL for is_food
         is_food = True
 
-    # Checks for collision and hides food, clears score, tells that the food is gone.
+    # Checks for collision and hides object, sets food false, clears score.
     if check_col_food():
         is_food = False
         food.hideturtle()
