@@ -97,12 +97,21 @@ def check_col_food():
 
 
 def check_col_wall():
-    if s_head.xcor() < -300 or s_head.xcor() > 300:
+    if (
+        s_head.xcor() < -300
+        or s_head.xcor() > 300
+        or s_head.ycor() < -300
+        or s_head.ycor() > 300
+    ):
+        writer = Turtle()
+        writer.color("white")
+        writer.penup()
+        writer.hideturtle()
+        writer.setpos(-60, 0)
+        writer.write(f"Game Over.", font=("Arial", 20, "normal"))
         print("GameOver")
-        # game_on = False
-
-    if s_head.ycor() < -300 or s_head.ycor() > 300:
-        print("GameOver")
+        time.sleep(3)
+        screen.bye()
 
 
 # Screen properties
