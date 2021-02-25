@@ -9,6 +9,17 @@ food_x = 0
 food_y = 0
 
 
+def gameover():
+    writer = Turtle()
+    writer.color("white")
+    writer.penup()
+    writer.hideturtle()
+    writer.setpos(-60, 0)
+    writer.write(f"Game Over.", font=("Arial", 20, "normal"))
+    time.sleep(3)
+    screen.bye()
+
+
 # Item Creations
 def create_snake() -> list:
     """ Creates a snake body from Turtle objects in the center of screen """
@@ -29,11 +40,9 @@ def create_snake() -> list:
 
 
 def create_food() -> tuple:
-    # TODO delete food.
     global food_x, food_y
     food_x = random.randrange(-280, 280, 20)
     food_y = random.randrange(-280, 280, 20)
-    # tup_pos = (rand_x, rand_y)
 
     food = Turtle("circle")
     food.shapesize(0.5, 0.5)
@@ -103,15 +112,18 @@ def check_col_wall():
         or s_head.ycor() < -300
         or s_head.ycor() > 300
     ):
-        writer = Turtle()
-        writer.color("white")
-        writer.penup()
-        writer.hideturtle()
-        writer.setpos(-60, 0)
-        writer.write(f"Game Over.", font=("Arial", 20, "normal"))
-        print("GameOver")
-        time.sleep(3)
-        screen.bye()
+        gameover()
+
+
+def check_col_body():
+    s_position_list = []
+    for seg in range(0, len(s_segments) - 1):
+        s_position_list.append(s_segments[seg].position())
+
+    for position in s_position_list:
+        if s_head.distance(position) < 10:
+            gameover()
+            # print("Gameover")
 
 
 # Screen properties
@@ -161,6 +173,8 @@ while game_on:
         writer.clear()
 
     check_col_wall()
+    check_col_body()
+
     time.sleep(0.1)
 
 
