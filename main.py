@@ -3,13 +3,13 @@ import random
 import time
 
 # Globals
-delete_food = False
 score = 0
 food_x = 0
 food_y = 0
 
 
 def gameover():
+    """ Prints a gameover message and closes after 3 seconds """
     writer = Turtle()
     writer.color("white")
     writer.penup()
@@ -40,6 +40,7 @@ def create_snake() -> list:
 
 
 def create_food() -> tuple:
+    """Creates food randomly on the screen """
     global food_x, food_y
     food_x = random.randrange(-280, 280, 20)
     food_y = random.randrange(-280, 280, 20)
@@ -54,6 +55,7 @@ def create_food() -> tuple:
 
 
 def grow_snake():
+    """ Inserts a new segment to the snake segments to it's beginning"""
     new_segment = Turtle("square")
     new_segment.color("white")
     new_segment.penup()
@@ -63,6 +65,7 @@ def grow_snake():
 
 
 def write_score():
+    """ Write the score on top of the screen using writer turtle object """
     global score
     writer.write(f"Score : {score}", font=("Arial", 16, "normal"))
 
@@ -165,6 +168,7 @@ while game_on:
         food = create_food()  # Getting Turtle object and BOOL for is_food
         is_food = True
 
+    # All Collision Checks
     # Checks for collision and hides object, sets food false, clears score, grows snake.
     if check_col_food():
         grow_snake()
