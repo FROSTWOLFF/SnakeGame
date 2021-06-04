@@ -1,0 +1,69 @@
+======================== Snake Game ==============================
+-- Main Steps (1-7) :
+
+1- Create a snake body
+2- Move the snake
+3- Create the snake food
+4- Detect collision with food
+5- Create a scoreboard
+6-Detect collision with wall
+7-Detect collision with tail
+
+
+Screen -> 600x600
+
+In depth details :
+1- Creating a snake body :
+=================
+Information:
+- To create a snake body we will be combining 3 Turtle objects with shape square 20x20 
+- The head is going to be in the center (0, 0) , and behind it is going  to be the body and the tail
+
+
+Sketching plans:
+- def create_snake(): -> Which is going to create a snake with 3 segments of Turtle objects and will
+	return the list of snake objects.
+Turtle() Attributes:
+- penup()
+- color("white")
+- shape("square")
+- setpos()
+================
+
+================
+	
+2- Move the Snake:
+================
+Information:
+- To make the snake move we will be using the head part of the snake, the body parts will be replacing the parts in front
+	of it  by using there positions.
+	
+Sketching Plans
+- def move_snake(head_position): -> going to move the snake with the help listened buttons
+	will use the head position
+
+- The function will be used in a while loop in our main project.
+
+Listend functions:
+turn_left()
+turn_right()
+
+
+3- Creating the snake food:
+- A turtle object that should spawn randomly and going to be checked for collision with the snake,
+	 everytime they collide food is going to spawn in another random place.
+	 
+ 
+4-Detecting collision with food.
+-
+
+5- Adding the scores
+
+
+6-Detect collision with wall
+
+7- Detect body collision
+
+
+
+
