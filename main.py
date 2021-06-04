@@ -164,8 +164,9 @@ while game_on:
     write_score()
     move_snake()
 
+    # Getting Turtle object and BOOL for is_food
     if is_food == False:
-        food = create_food()  # Getting Turtle object and BOOL for is_food
+        food = create_food()  
         is_food = True
 
     # All Collision Checks
